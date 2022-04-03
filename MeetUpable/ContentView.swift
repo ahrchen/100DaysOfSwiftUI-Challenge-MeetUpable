@@ -8,10 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAddScreen = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                Text("Hello, world!")
+                    .padding()
+            }
+            .navigationTitle("MeetUpable")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingAddScreen.toggle()
+                    } label: {
+                        Label("Add Person", systemImage: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingAddScreen) {
+                AddPersonView()
+            }
+        }
+        
     }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {
