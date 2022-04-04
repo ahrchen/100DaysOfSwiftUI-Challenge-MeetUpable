@@ -19,10 +19,10 @@ struct ContentView: View {
             List {
                 ForEach(viewModel.people) { person in
                     NavigationLink {
-                        Text("Placeholder for \(person.name)")
+                        DetailView(person: person)
                     } label : {
                         HStack {
-                            viewModel.loadImage(person: person)
+                            Person.loadImage(person: person)
                                 .resizable()
                                 .frame(width:44, height: 44)
                             Text(person.name)

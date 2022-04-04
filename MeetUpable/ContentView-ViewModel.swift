@@ -24,7 +24,7 @@ extension ContentView {
             }
         }
         
-        func save() {
+        func savePeople() {
             do {
                 let data = try JSONEncoder().encode(people)
                 try data.write(to: savePath, options: [.atomic, .completeFileProtection])
@@ -35,7 +35,7 @@ extension ContentView {
         
         func add(person: Person, image: UIImage?) {
             people.append(person)
-            save()
+            savePeople()
             
             let imageSavePath = FileManager.documentDirectory.appendingPathComponent("\(person.id.uuidString).jpg")
             if let jpegData = image?.jpegData(compressionQuality: 0.8) {
@@ -43,20 +43,12 @@ extension ContentView {
             }
         }
         
-        func loadImage(person: Person) -> Image {
-            let imagePath = FileManager.documentDirectory.appendingPathComponent("\(person.id.uuidString).jpg")
-            if let data = try? Data(contentsOf: imagePath), let loaded = UIImage(data: data) {
-                return Image(uiImage: loaded)
-            }
-            return Image(systemName: "person")
-        }
-        
         func deletePerson(at offsets: IndexSet) {
             for offset in offsets {
                 deleteImage(person: people[offset])
             }
             people.remove(atOffsets: offsets)
-            save()
+            savePeople()
         }
         
         func deleteImage(person: Person) {
