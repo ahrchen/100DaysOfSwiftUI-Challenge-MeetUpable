@@ -16,6 +16,7 @@
 		EE3D887E27F96C3F00ED5783 /* AddPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D887D27F96C3F00ED5783 /* AddPersonView.swift */; };
 		EEF89C3427FA712B00468515 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89C3327FA712B00468515 /* FileManager-DocumentsDirectory.swift */; };
 		EEF89C3627FA78DB00468515 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89C3527FA78DB00468515 /* ContentView-ViewModel.swift */; };
+		EEF89C3827FA8A4000468515 /* AddPersonView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF89C3727FA8A4000468515 /* AddPersonView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		EE3D887D27F96C3F00ED5783 /* AddPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonView.swift; sourceTree = "<group>"; };
 		EEF89C3327FA712B00468515 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
 		EEF89C3527FA78DB00468515 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		EEF89C3727FA8A4000468515 /* AddPersonView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddPersonView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				EE3D886D27F9647700ED5783 /* ContentView.swift */,
 				EEF89C3527FA78DB00468515 /* ContentView-ViewModel.swift */,
 				EE3D887D27F96C3F00ED5783 /* AddPersonView.swift */,
+				EEF89C3727FA8A4000468515 /* AddPersonView-ViewModel.swift */,
 				EE3D887927F965EC00ED5783 /* Person.swift */,
 				EE3D887B27F96A3800ED5783 /* ImagePicker.swift */,
 				EEF89C3327FA712B00468515 /* FileManager-DocumentsDirectory.swift */,
@@ -156,6 +159,7 @@
 				EE3D887A27F965EC00ED5783 /* Person.swift in Sources */,
 				EE3D887C27F96A3800ED5783 /* ImagePicker.swift in Sources */,
 				EE3D887E27F96C3F00ED5783 /* AddPersonView.swift in Sources */,
+				EEF89C3827FA8A4000468515 /* AddPersonView-ViewModel.swift in Sources */,
 				EE3D886E27F9647700ED5783 /* ContentView.swift in Sources */,
 				EEF89C3627FA78DB00468515 /* ContentView-ViewModel.swift in Sources */,
 				EE3D886C27F9647700ED5783 /* MeetUpableApp.swift in Sources */,

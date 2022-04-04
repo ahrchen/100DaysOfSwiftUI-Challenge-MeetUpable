@@ -12,10 +12,12 @@ struct AddPersonView: View {
     @Environment(\.dismiss) var dismiss
     var onSave: (Person, UIImage?) -> Void
     
-    @State private var name: String = ""
-    @State private var inputImage: UIImage?
-    @State private var image: Image?
-    @State private var showingImagePicker = false
+    @StateObject private var viewModel: ViewModel
+    
+    init(onSave: @escaping (Person, UIImage?) -> Void) {
+        _viewModel = StateObject(wrappedValue: ViewModel())
+        self.onSave = onSave
+    }
     
     var body: some View {
         VStack {
@@ -23,37 +25,32 @@ struct AddPersonView: View {
                 Rectangle()
                     .fill(.secondary)
                 Text("Tap to select a picture")
-                    .opacity(image == nil ? 1 : 0)
-                image?
+                    .opacity(viewModel.image == nil ? 1 : 0)
+                viewModel.image?
                     .resizable()
                     .scaledToFit()
             }
             .onTapGesture {
-                showingImagePicker = true
+                viewModel.showingImagePicker = true
             }
         }
-        .onChange(of: inputImage) { _ in loadImage() }
+        .onChange(of: viewModel.inputImage) { _ in viewModel.loadImage() }
         Form {
             Section {
-                TextField("Name of person", text: $name)
+                TextField("Name of person", text: $viewModel.name)
                 Button("Save") {
-                    let newPerson = Person(id: UUID(), name: name)
-                    onSave(newPerson, inputImage)
+                    let newPerson = Person(id: UUID(), name: viewModel.name)
+                    onSave(newPerson, viewModel.inputImage)
                     dismiss()
                 }
             }
         }
-        .sheet(isPresented: $showingImagePicker) {
-            ImagePicker(image: $inputImage)
+        .sheet(isPresented: $viewModel.showingImagePicker) {
+            ImagePicker(image: $viewModel.inputImage)
         }
     }
     
-    func loadImage() {
-        guard let inputImage = inputImage else {
-            return
-        }
-        image = Image(uiImage: inputImage)
-    }
+    
     
 }
 
