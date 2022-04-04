@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingAddScreen = false
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("Hello, world!")
-                    .padding()
+                Text("\(viewModel.people.count)")
             }
             .navigationTitle("MeetUpable")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        showingAddScreen.toggle()
+                        viewModel.showingAddScreen.toggle()
                     } label: {
                         Label("Add Person", systemImage: "plus")
                     }
                 }
             }
-            .sheet(isPresented: $showingAddScreen) {
-                AddPersonView()
+            .sheet(isPresented: $viewModel.showingAddScreen) {
+                AddPersonView() { newPerson, newImage in
+                    viewModel.save(person: newPerson, image: newImage)
+                }
             }
         }
         

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AddPersonView: View {
     @Environment(\.dismiss) var dismiss
+    var onSave: (Person, UIImage?) -> Void
     
     @State private var name: String = ""
     @State private var inputImage: UIImage?
@@ -36,6 +37,8 @@ struct AddPersonView: View {
             Section {
                 TextField("Name of person", text: $name)
                 Button("Save") {
+                    let newPerson = Person(id: UUID(), name: name)
+                    onSave(newPerson, inputImage)
                     dismiss()
                 }
             }
@@ -49,14 +52,13 @@ struct AddPersonView: View {
         guard let inputImage = inputImage else {
             return
         }
-
         image = Image(uiImage: inputImage)
     }
-        
+    
 }
 
 struct AddPersonView_Previews: PreviewProvider {
     static var previews: some View {
-        AddPersonView()
+        AddPersonView() { newPerson, newImage in }
     }
 }
