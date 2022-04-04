@@ -49,9 +49,6 @@ struct AddPersonView: View {
             ImagePicker(image: $viewModel.inputImage)
         }
     }
-    
-    
-    
 }
 
 struct AddPersonView_Previews: PreviewProvider {

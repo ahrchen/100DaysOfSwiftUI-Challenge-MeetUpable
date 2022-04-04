@@ -8,12 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = ViewModel()
+    @StateObject private var viewModel: ViewModel
+
+    init() {
+        self._viewModel = StateObject(wrappedValue: ViewModel())
+    }
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("\(viewModel.people.count)")
+            List {
+                ForEach(viewModel.people) { person in
+                    NavigationLink {
+                        Text("Placeholder for \(person.name)")
+                    } label : {
+                        HStack {
+                            viewModel.loadImage(person: person)
+                                .resizable()
+                                .frame(width:44, height: 44)
+                            Text(person.name)
+                                .font(.headline)
+                        }
+                    }
+                }
+                .onDelete { indexSet in
+                    viewModel.deletePerson(at: indexSet)
+                }
             }
             .navigationTitle("MeetUpable")
             .toolbar {
@@ -24,10 +43,13 @@ struct ContentView: View {
                         Label("Add Person", systemImage: "plus")
                     }
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
             }
             .sheet(isPresented: $viewModel.showingAddScreen) {
                 AddPersonView() { newPerson, newImage in
-                    viewModel.save(person: newPerson, image: newImage)
+                    viewModel.add(person: newPerson, image: newImage)
                 }
             }
         }
